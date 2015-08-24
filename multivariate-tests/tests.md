@@ -35,4 +35,8 @@ We can see several columns describing what fly strain, mutant type, and other me
 
 There are several options to determine whether or not experimental designs produce significantly different results.  A classic way of doing this is using multivariate analysis of variance or MANOVA.  A major assumption of MANOVA is that variables within each treatment level come from a multivariate normal distribution.
 
-To run a MANOVA, we set up a linear model first and then nest a few functions together.  Here we demonstrate a Wilk's lambda, which is common in the literature.  Note that there are several options; run `?summary.manova` to explore them.    
+To run a MANOVA, we set up a linear model first and then nest a few functions together.  Here we demonstrate a Wilk's lambda, which is common in the literature.  Note that there are several options; run `?summary.manova` to explore them.  **This code may be too intense for your laptop, consider using EC2**. 
+```R
+test<-lm(as.matrix(dataset[,-c(1:3)])~dataset$fly)
+summary(manova(test),test="Wilks")
+```   
