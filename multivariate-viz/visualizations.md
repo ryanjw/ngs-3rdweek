@@ -103,3 +103,10 @@ ggplot(sc)+geom_point(aes(x=MDS1,y=MDS2,colour=info,shape=type))+labs(x="MDS1 (3
 ```
 ![alt text](https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-viz/contrained-fly-pcoa.jpg))
 
+Can we guess where our unknown flies originated from?
+
+##Challenge
+
+Determine the fly `type` using the same methodology as above.  [*See solution here*](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-viz/capscale-soln.md)
+
+
