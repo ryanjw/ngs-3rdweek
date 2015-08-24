@@ -39,4 +39,19 @@ To run a MANOVA, we set up a linear model first and then nest a few functions to
 ```R
 test<-lm(as.matrix(dataset[,-c(1:3)])~dataset$fly)
 summary(manova(test),test="Wilks")
-```   
+``` 
+If you run this code, it may not work...see output below
+```R
+Error in qr.default(D %*% ss[[nt]] %*% D, tol = tol) :
+  NA/NaN/Inf in foreign function call (arg 1)
+ ```
+This code ends up failing, but why may this be?  Is our data violating some assumptions?  Let's grab a few random variables from the dataset and see how they are distributed.
+```R
+library(ggplot2)
+ggplot(dataset)+geom_density(aes(x=FBgn0000022,fill=fly,alpha=0.5))
+```
+https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-tests/fly-density-plot.jpg
+##Challenge
+*Try looking at another variable by replacing `FBgn0000022` with another variable name and coloring by `type` instead of `fly`
+
+
