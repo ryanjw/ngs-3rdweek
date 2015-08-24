@@ -52,6 +52,9 @@ ggplot(dataset)+geom_density(aes(x=FBgn0000022,fill=fly,alpha=0.5))
 ```
 ![alt text](https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-tests/fly-density-plot.jpg)
 ##Challenge
-*Try looking at another variable by replacing `FBgn0000022` with another variable name and coloring by `type` instead of `fly`
+*Try looking at another variable by replacing `FBgn0000022` with another variable name and coloring by `type` instead of `fly`*
 
+##Trying nonparametric tests
+
+A problem with these types of data is that they are often not normally distributed and it is common to have very few samples.  Multivariate tests that run in a nonparametric framework (i.e. using permutations) are a powerful alternative.  *Note that these can be run on your laptop, while MANOVA may not!*
 
