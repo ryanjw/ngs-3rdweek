@@ -11,6 +11,7 @@ library(RCurl)
 ```
 Using a combination of functions from R, we will create an object called dataset that holds all of the fly data
 ```R
+URL<-("https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/datasets/fly_data.txt")
 dataset<-read.table(textConnection(getURL(URL)),header=T,check.names=F,sep="\t")
 ```
 If you are unable to do download RCurl, [run this code instead](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-tests/alternative-download.md)
