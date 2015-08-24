@@ -117,6 +117,7 @@ Note that that by taking a distance based approach we can actually gain resoluti
 
 Try to do the same thing based on presence/absence by changing `total` to `pa` and adding `method="jaccard"` to the `adonis` function.  Be careful, and watch the placement of `()` when nesting these functions!
 
+[*You can find the solution here*](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-tests/pa-soln.md)
 
 
 
