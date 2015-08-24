@@ -119,6 +119,26 @@ Try to do the same thing based on presence/absence by changing `total` to `pa` a
 
 [*You can find the solution here*](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-tests/pa-soln.md)
 
+#Comparing matrices with mantel tests
+
+Another useful method is the Mantel Test.  Here, two distance matrices are compared by looking at correlations between entries and then permuting entries to determine significance.  
+```R
+?mantel
+unique(dataset$fly)
+
+HYB_subset<-subset(dataset, fly=="HYB")[,-c(1:3)]
+ORE_subset<-subset(dataset, fly=="ORE")[,-c(1:3)]
+
+HYB_dist<-vegdist(decostand(HYB_subset,"pa"),method="jaccard")
+ORE_dist<-vegdist(decostand(ORE_subset,"pa"),method="jaccard")
+
+mantel(ORE_dist,HYB_dist,method="spearman",permutations=9999)
+```R
+
+##Challenge
+
+Try to do all pairwise comparisons between fly types.  Are the results as sensitive as the PERMANOVA?
+[*You can find the solution here*](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-tests/pairwise-mantel.md)
 
 
 
