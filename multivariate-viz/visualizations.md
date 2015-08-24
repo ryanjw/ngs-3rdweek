@@ -92,3 +92,14 @@ sc<-data.frame(scores(pcoa)$sites,dataset[,1:4])
 ggplot(sc)+geom_point(aes(x=MDS1,y=MDS2,colour=info,shape=type))+labs(x="MDS1 (33.0% of variation explained)",y="MDS1 (8.2% of variation explained)")
 ```
 ![alt text](https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-viz/pcoa.jpg)
+
+We now see some nice separation that can help us interpret what the samples originate from, any ideas?
+
+We can also constrain the variation within the plot to get a better idea of how things are falling out.  Now we assign variables within the capscale function to do this.  
+```R
+pcoa<-capscale(decostand(dataset[,-c(1:4)],"total")~dataset$fly,distance="bray")
+scores(pcoa)$centroids
+ggplot(sc)+geom_point(aes(x=MDS1,y=MDS2,colour=info,shape=type))+labs(x="MDS1 (33.0% of variation explained)",y="MDS1 (8.2% of variation explained)")+annotate("text",x=c(-.157,-.077,.17),y=c(-.004,.670,.156),label=c("HYB","ORE","SAM"))
+```
+![alt text](https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-viz/contrained-fly-pcoa.jpg))
+
