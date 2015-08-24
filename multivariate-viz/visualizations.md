@@ -33,4 +33,9 @@ Let's generate an NMDS using the `metaMDS` function from the `vegan` package.  W
  ```R
  ggplot(sc)+geom_point(aes(x=NMDS1,y=NMDS2))
  ```
- ![alt text](https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-viz/plain-nmds.jpg)   
+ ![alt text](https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-viz/plain-nmds.jpg)
+
+ While we can see the points in space, colors and shapes would be nice to help us understand the indentity of each point.
+
+ ##Challenge
+ Add colors and shapes based on the metadata within our dataset.  Do this by passing a variable name like `fly` or `type` to the arguments `shape=...` or `colour=...` within the `aes()` function. [*See solution here*](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-viz/nmds-soln.md)   
