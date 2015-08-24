@@ -13,6 +13,8 @@ Using a combination of functions from R, we will create an object called dataset
 ```
 dataset<-read.table(textConnection(getURL(URL)),header=T,check.names=F,sep="\t")
 ```
+If you are unable to do download RCurl, [run this code instead](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-tests/alternative-download.md)
+
 Let's look at the first few rows and columns of the dataset.
 ```
 head(dataset[,1:10])
