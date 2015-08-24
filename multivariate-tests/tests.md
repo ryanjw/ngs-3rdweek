@@ -84,3 +84,40 @@ Total                    11  0.145349                   1.00000
 ```
 Check your neighbor to see if you have the same numbers.  While there is not a significant effect, it is important to note that `fly` explains the most variation, while the interaction between `fly` and `type` is also strong.  With more samples, these relationships may resolve.
 
+This function, `adonis`, is very strong.  It allows you to incorporate block effects by passing arguments to `strata`.  
+
+We can also use distance based approaches to ask more specific multivariate questions like, *"Does the composition of transcripts differ between flys and types?"* or *"Are different transcripts present or absent between flys and types?"*
+
+We will do this by nesting another function, `decostand`, within the `adonis` function
+
+```R
+adonis(decostand(dataset[,-c(1:3)],method="total")~dataset$fly*dataset$type)
+
+Call:
+adonis(formula = decostand(dataset[, -c(1:3)], method = "total") ~      dataset$fly * dataset$type) 
+
+Permutation: free
+Number of permutations: 999
+
+Terms added sequentially (first to last)
+
+                         Df SumsOfSqs   MeanSqs F.Model      R2 Pr(>F)  
+dataset$fly               2 0.0086981 0.0043491  1.9775 0.30315  0.020 *
+dataset$type              1 0.0022970 0.0022970  1.0444 0.08006  0.409  
+dataset$fly:dataset$type  2 0.0045017 0.0022508  1.0235 0.15690  0.447  
+Residuals                 6 0.0131955 0.0021993         0.45990         
+Total                    11 0.0286923                   1.00000         
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Note that that by taking a distance based approach we can actually gain resolution.  Further, the amount of variation explained is qualitatively similar to the non-distance based approach.
+
+##Challenge
+
+Try to do the same thing based on presence/absence by changing `total` to `pa` and adding `method="jaccard"` to the `adonis` function.  Be careful, and watch the placement of `()` when nesting these functions!
+
+
+
+
+
