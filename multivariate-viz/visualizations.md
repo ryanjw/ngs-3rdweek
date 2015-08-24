@@ -80,4 +80,15 @@ eigs/sum(eigs)
 sc<-data.frame(scores(pca)$sites,dataset[,1:4])
 ggplot(sc)+geom_point(aes(x=MDS1,y=MDS2,colour=info,shape=type))+labs(x="MDS1 (75.9% of variation explained)",y="MDS1 (5.8% of variation explained)")
 ```
-![alt text](https://github.com/ryanjw/ngs-3rdweek/raw/master/multivariate-viz/pca.jpg)   
+![alt text](https://github.com/ryanjw/ngs-3rdweek/raw/master/multivariate-viz/pca.jpg) 
+
+Mirroring the tests we performed earlier, let's do the same thing but with analysis based on composition
+```R  
+pcoa<-capscale(decostand(dataset[,-c(1:4)],"total")~1,distance="bray")
+pcoa
+eigs<-eigenvals(pcoa)
+eigs/sum(eigs)
+sc<-data.frame(scores(pcoa)$sites,dataset[,1:4])
+ggplot(sc)+geom_point(aes(x=MDS1,y=MDS2,colour=info,shape=type))+labs(x="MDS1 (33.0% of variation explained)",y="MDS1 (8.2% of variation explained)")
+```
+![alt text](https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-viz/pcoa.jpg)
