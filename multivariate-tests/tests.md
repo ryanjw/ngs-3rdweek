@@ -10,7 +10,7 @@ install.packages("RCurl")
 library(RCurl)
 ```
 Using a combination of functions from R, we will create an object called dataset that holds all of the fly data
-```
+```R
 dataset<-read.table(textConnection(getURL(URL)),header=T,check.names=F,sep="\t")
 ```
 If you are unable to do download RCurl, [run this code instead](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-tests/alternative-download.md)
@@ -32,3 +32,7 @@ The output should look like this
 We can see several columns describing what fly strain, mutant type, and other metadata regarding these samples.  Starting in column three, we can see the counts of specific contigs from this RNAseq experiment.
 
 ### Multivariate analysis of variance
+
+There are several options to determine whether or not experimental designs produce significantly different results.  A classic way of doing this is using multivariate analysis of variance or MANOVA.  A major assumption of MANOVA is that variables within each treatment level come from a multivariate normal distribution.
+
+To run a MANOVA, we set up a linear model first and then nest a few functions together.  Here we demonstrate a Wilk's lambda, which is common in the literature.  Note that there are several options; run `?summary.manova` to explore them.    
