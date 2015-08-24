@@ -5,7 +5,7 @@ The tests I will present here can be used universally across multivariate data.
 First, either download the data or get it directly from the datasets directory using a function from the RCurl package.
 
 Let's download and install the package first
-```
+```R
 install.packages("RCurl")
 library(RCurl)
 ```
@@ -16,11 +16,11 @@ dataset<-read.table(textConnection(getURL(URL)),header=T,check.names=F,sep="\t")
 If you are unable to do download RCurl, [run this code instead](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-tests/alternative-download.md)
 
 Let's look at the first few rows and columns of the dataset.
-```
+```R
 head(dataset[,1:10])
 ```
 The output should look like this
-```
+```R
   fly type                           file FBgn0000003 FBgn0000008 FBgn0000014 FBgn0000015 FBgn0000017 FBgn0000018 FBgn0000022
 1 HYB sdE3 HYB_sdE3_rep1_htseq_counts.txt           0           0           0           0           0           0         200
 2 HYB sdE3 HYB_sdE3_rep2_htseq_counts.txt           0           0           0           0           0           0         319
