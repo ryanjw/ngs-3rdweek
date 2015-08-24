@@ -58,3 +58,29 @@ ggplot(dataset)+geom_density(aes(x=FBgn0000022,fill=fly,alpha=0.5))
 
 A problem with these types of data is that they are often not normally distributed and it is common to have very few samples.  Multivariate tests that run in a nonparametric framework (i.e. using permutations) are a powerful alternative.  *Note that these can be run on your laptop, while MANOVA may not!*
 
+We will start with a permutational multivariate analysis of variance (PERMANOVA)
+```R
+# install.packages("vegan")
+library(vegan)
+?adonis
+adonis(dataset[,-c(1:3)]~dataset$fly*dataset$type)
+```
+The output should look like
+```R
+Call:
+adonis(formula = dataset[, -c(1:3)] ~ dataset$fly * dataset$type) 
+
+Permutation: free
+Number of permutations: 999
+
+Terms added sequentially (first to last)
+
+                         Df SumsOfSqs   MeanSqs F.Model      R2 Pr(>F)
+dataset$fly               2  0.031265 0.0156327 1.10720 0.21511  0.390
+dataset$type              1  0.001778 0.0017776 0.12590 0.01223  0.959
+dataset$fly:dataset$type  2  0.027591 0.0137957 0.97709 0.18983  0.459
+Residuals                 6  0.084715 0.0141191         0.58284       
+Total                    11  0.145349                   1.00000    
+```
+Check your neighbor to see if you have the same numbers.  While there is not a significant effect, it is important to note that `fly` explains the most variation, while the interaction between `fly` and `type` is also strong.  With more samples, these relationships may resolve.
+
