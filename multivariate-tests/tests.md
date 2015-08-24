@@ -50,7 +50,7 @@ This code ends up failing, but why may this be?  Is our data violating some assu
 library(ggplot2)
 ggplot(dataset)+geom_density(aes(x=FBgn0000022,fill=fly,alpha=0.5))
 ```
-https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-tests/fly-density-plot.jpg
+(https://raw.githubusercontent.com/ryanjw/ngs-3rdweek/master/multivariate-tests/fly-density-plot.jpg)
 ##Challenge
 *Try looking at another variable by replacing `FBgn0000022` with another variable name and coloring by `type` instead of `fly`
 
