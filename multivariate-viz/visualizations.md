@@ -38,4 +38,46 @@ Let's generate an NMDS using the `metaMDS` function from the `vegan` package.  W
  While we can see the points in space, colors and shapes would be nice to help us understand the indentity of each point.
 
  ##Challenge
- Add colors and shapes based on the metadata within our dataset.  Do this by passing a variable name like `fly` or `type` to the arguments `shape=...` or `colour=...` within the `aes()` function. [*See solution here*](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-viz/nmds-soln.md)   
+ Add colors and shapes based on the metadata within our dataset.  Do this by passing a variable name like `fly` or `type` to the arguments `shape=...` or `colour=...` within the `aes()` function. [*See solution here*](https://github.com/ryanjw/ngs-3rdweek/blob/master/multivariate-viz/nmds-soln.md)
+
+ # PCoA and/or PCA
+
+ Another popular method of visualization is Principle Components Analysis (PCA), and often Principle Components Analysis is used.  What's the difference?  PCA and PCoA are performed differently, but PCoA produces identical results as PCA when the euclidian distance is used.  Therefore we will focus on PCoA as it can work better for non-normally distributed data. 
+
+ Let's produce a PCA first
+ ```R
+pca<-capscale(dataset[,-c(1:4)]~1)
+pca
+```
+```R
+Call: capscale(formula = dataset[, -c(1:4)] ~ 1)
+
+               Inertia Rank
+Total         9.59e+08     
+Unconstrained 9.59e+08   51
+Inertia is mean squared Euclidean distance 
+
+Eigenvalues for unconstrained axes:
+     MDS1      MDS2      MDS3      MDS4      MDS5      MDS6      MDS7      MDS8 
+728233494  55344575  30956887  26646256  20802970  11395822   9047108   8339889 
+(Showed only 8 of all 51 unconstrained eigenvalues)
+```
+```R
+eigs<-eigenvals(pca)
+eigs/sum(eigs)
+```
+```R
+     MDS1      MDS2      MDS3      MDS4      MDS5      MDS6      MDS7      MDS8      MDS9     MDS10     MDS11     MDS12     MDS13     MDS14     MDS15     MDS16 
+0.7593702 0.0577109 0.0322805 0.0277856 0.0216924 0.0118831 0.0094339 0.0086965 0.0073555 0.0068737 0.0055017 0.0043177 0.0038954 0.0038647 0.0029479 0.0029354 
+    MDS17     MDS18     MDS19     MDS20     MDS21     MDS22     MDS23     MDS24     MDS25     MDS26     MDS27     MDS28     MDS29     MDS30     MDS31     MDS32 
+0.0025209 0.0023627 0.0021998 0.0019720 0.0018604 0.0017608 0.0017294 0.0014893 0.0013986 0.0012682 0.0011862 0.0010923 0.0010440 0.0009666 0.0008388 0.0007844 
+    MDS33     MDS34     MDS35     MDS36     MDS37     MDS38     MDS39     MDS40     MDS41     MDS42     MDS43     MDS44     MDS45     MDS46     MDS47     MDS48 
+0.0007641 0.0007490 0.0007321 0.0006646 0.0006423 0.0006083 0.0005679 0.0005434 0.0004940 0.0004746 0.0004725 0.0004220 0.0003919 0.0003593 0.0003352 0.0003105 
+    MDS49     MDS50     MDS51 
+0.0002960 0.0000866 0.0000660 
+```
+```R
+sc<-data.frame(scores(pca)$sites,dataset[,1:4])
+ggplot(sc)+geom_point(aes(x=MDS1,y=MDS2,colour=info,shape=type))+labs(x="MDS1 (75.9% of variation explained)",y="MDS1 (5.8% of variation explained)")
+```
+![alt text](https://github.com/ryanjw/ngs-3rdweek/raw/master/multivariate-viz/pca.jpg)   
