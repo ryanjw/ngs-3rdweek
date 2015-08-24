@@ -28,3 +28,5 @@ The output should look like this
 6 ORE sdE3 ORE_sdE3_rep2_htseq_counts.txt           0           0           0           0           0           0         312
 ```
 We can see several columns describing what fly strain, mutant type, and other metadata regarding these samples.  Starting in column three, we can see the counts of specific contigs from this RNAseq experiment.
+
+### Multivariate analysis of variance
